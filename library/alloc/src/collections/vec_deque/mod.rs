@@ -746,6 +746,7 @@ impl<T, A: Allocator> VecDeque<T, A> {
     /// assert_eq!(buf, [5, 4, 3]);
     /// ```
     #[stable(feature = "rust1", since = "1.0.0")]
+    #[track_caller]
     pub fn swap(&mut self, i: usize, j: usize) {
         assert!(i < self.len());
         assert!(j < self.len());
@@ -1497,6 +1498,7 @@ impl<T, A: Allocator> VecDeque<T, A> {
     /// assert!(deque.is_empty());
     /// ```
     #[inline]
+    #[track_caller]
     #[stable(feature = "drain", since = "1.6.0")]
     pub fn drain<R>(&mut self, range: R) -> Drain<'_, T, A>
     where
@@ -2496,6 +2498,7 @@ impl<T, A: Allocator> VecDeque<T, A> {
     /// assert_eq!(buf, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     /// ```
     #[stable(feature = "vecdeque_rotate", since = "1.36.0")]
+    #[track_caller]
     pub fn rotate_left(&mut self, n: usize) {
         assert!(n <= self.len());
         let k = self.len - n;
@@ -2539,6 +2542,7 @@ impl<T, A: Allocator> VecDeque<T, A> {
     /// assert_eq!(buf, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     /// ```
     #[stable(feature = "vecdeque_rotate", since = "1.36.0")]
+    #[track_caller]
     pub fn rotate_right(&mut self, n: usize) {
         assert!(n <= self.len());
         let k = self.len - n;
