@@ -1948,6 +1948,7 @@ impl<T, A: Allocator> Vec<T, A> {
     /// assert_eq!(v, ["baz", "qux"]);
     /// ```
     #[inline]
+    #[track_caller]
     #[stable(feature = "rust1", since = "1.0.0")]
     pub fn swap_remove(&mut self, index: usize) -> T {
         #[cold]
@@ -2628,6 +2629,7 @@ impl<T, A: Allocator> Vec<T, A> {
     /// assert_eq!(v, &[]);
     /// ```
     #[stable(feature = "drain", since = "1.6.0")]
+    #[track_caller]
     pub fn drain<R>(&mut self, range: R) -> Drain<'_, T, A>
     where
         R: RangeBounds<usize>,
@@ -3122,6 +3124,7 @@ impl<T, A: Allocator, const N: usize> Vec<[T; N], A> {
     /// assert_eq!(flattened.pop(), Some(6));
     /// ```
     #[stable(feature = "slice_flatten", since = "1.80.0")]
+    #[track_caller]
     pub fn into_flattened(self) -> Vec<T, A> {
         let (ptr, len, cap, alloc) = self.into_raw_parts_with_alloc();
         let (new_len, new_cap) = if T::IS_ZST {
